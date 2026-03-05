@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-pitch mb-6">🔧 Admin Panel</h2>
+    
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <h3 class="text-xl font-bold mb-4">Update Player Stats</h3>
+        <form method="POST" action="{{ url_for('update_player_stats') }}" class="grid md:grid-cols-4 gap-4">
+            <select name="player_id" class="p-3 border rounded-lg" required>
+                <option value="">Select Player</option>
+                {% for player in players %}
+                <option value="{{ player.id }}">{{ player.to_dict().name }} ({{ player.to_dict().team }})</option>
+                {% endfor %}
+            </select>
+            <input type="number" name="goals" placeholder="Goals" class="p-3 border rounded-lg" min="0">
+            <input type="number" name="assists" placeholder="Assists" class="p-3 border rounded-lg" min="0">
+            <button type="submit" class="bg-pitch text-white px-6 py-3 rounded-lg hover:bg-grass">
+                Update Stats
+            </button>
+        </form>
+        <p class="text-sm text-gray-500 mt-2">Points: (Goals × 4) + (Assists × 3)</p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-lg p-6">
+        <h3 class="text-xl font-bold mb-4">All Players</h3>
+        <div class="overflow-x-auto">
+            <table class="min-w-full">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-4 py-2 text-left">Name</th>
+                        <th class="px-4 py-2 text-left">Team</th>
+                        <th class="px-4 py-2 text-left">Position</th>
+                        <th class="px-4 py-2 text-left">Price</th>
+                        <th class="px-4 py-2 text-left">Goals</th>
+                        <th class="px-4 py-2 text-left">Assists</th>
+                        <th class="px-4 py-2 text-left">Total Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in players %}
+                    <tr class="border-t">
+                        <td class="px-4 py-3">{{ player.to_dict().name }}</td>
+                        <td class="px-4 py-3">{{ player.to_dict().team }}</td>
+                        <td class="px-4 py-3">{{ player.to_dict().position }}</td>
+                        <td class="px-4 py-3">£{{ player.to_dict().price }}m</td>
+                        <td class="px-4 py-3">{{ player.to_dict().goals }}</td>
+                        <td class="px-4 py-3">{{ player.to_dict().assists }}</td>
+                        <td class="px-4 py-3 font-bold">{{ player.to_dict().total_points }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

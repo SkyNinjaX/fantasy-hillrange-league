@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl font-bold text-pitch mb-6">🏆 Full Leaderboard</h2>
+    
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <table class="min-w-full">
+            <thead class="bg-pitch text-white">
+                <tr>
+                    <th class="px-6 py-3 text-left">Rank</th>
+                    <th class="px-6 py-3 text-left">Manager</th>
+                    <th class="px-6 py-3 text-left">GW Points</th>
+                    <th class="px-6 py-3 text-left">Total Points</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y">
+                {% for entry in standings %}
+                {% set data = entry.to_dict() %}
+                <tr class="{% if entry.id == session.uid %}bg-green-50{% endif %}">
+                    <td class="px-6 py-4 font-bold">{{ loop.index }}</td>
+                    <td class="px-6 py-4">{{ data.email }}</td>
+                    <td class="px-6 py-4">{{ data.gameweek_points }}</td>
+                    <td class="px-6 py-4 font-bold text-pitch">{{ data.total_points }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

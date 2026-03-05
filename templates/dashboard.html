@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-pitch mb-6">⚽ My Dashboard</h2>
+
+    <!-- Quick Stats -->
+    <div class="grid md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-gold">
+            <p class="text-sm text-gray-500">Total Points</p>
+            <p class="text-3xl font-bold text-pitch">
+                {{ user_team.to_dict().total_points if user_team.exists else 0 }}
+            </p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-500">
+            <p class="text-sm text-gray-500">Gameweek Points</p>
+            <p class="text-3xl font-bold text-green-600">
+                {{ user_team.to_dict().gameweek_points if user_team.exists else 0 }}
+            </p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
+            <p class="text-sm text-gray-500">Budget Used</p>
+            <p class="text-3xl font-bold text-blue-600">
+                £{{ user_team.to_dict().budget_used if user_team.exists else 0 }}m
+            </p>
+        </div>
+    </div>
+
+    <!-- Team Status -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <h3 class="text-xl font-bold mb-4">📋 Your Team Status</h3>
+        {% if user_team.exists %}
+        <p class="text-gray-600">Team: <strong>{{ user_team.to_dict().team_name }}</strong></p>
+        <p class="text-gray-600">Players: <strong>11/11</strong></p>
+        <a href="{{ url_for('team_builder') }}" class="inline-block mt-4 bg-pitch text-white px-6 py-2 rounded-lg hover:bg-grass">
+            ✏️ Edit Team
+        </a>
+        {% else %}
+        <p class="text-gray-600 mb-4">You haven't created a team yet!</p>
+        <a href="{{ url_for('team_builder') }}" class="inline-block bg-pitch text-white px-6 py-2 rounded-lg hover:bg-grass">
+            ⚡ Build Your Team
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- Top 10 Leaderboard -->
+    <div class="bg-white rounded-xl shadow-lg p-6">
+        <h3 class="text-xl font-bold mb-4">🏆 Top 10 Managers</h3>
+        <div class="overflow-x-auto">
+            <table class="min-w-full">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-4 py-2 text-left">Rank</th>
+                        <th class="px-4 py-2 text-left">Manager</th>
+                        <th class="px-4 py-2 text-left">GW Points</th>
+                        <th class="px-4 py-2 text-left">Total Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in leaderboard %}
+                    {% set data = entry.to_dict() %}
+                    <tr class="border-t {% if entry.id == session.uid %}bg-green-50{% endif %}">
+                        <td class="px-4 py-3">{{ loop.index }}</td>
+                        <td class="px-4 py-3">{{ data.email }}</td>
+                        <td class="px-4 py-3">{{ data.gameweek_points }}</td>
+                        <td class="px-4 py-3 font-bold">{{ data.total_points }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="{{ url_for('leaderboard') }}" class="inline-block mt-4 text-pitch font-semibold hover:underline">
+            View Full Leaderboard →
+        </a>
+    </div>
+</div>
+{% endblock %}

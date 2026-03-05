@@ -1,0 +1,13 @@
+# Firebase Keys - NEVER Upload!
+serviceAccountKey.json
+*.json
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# OS
+.DS_Store
+Thumbs.db

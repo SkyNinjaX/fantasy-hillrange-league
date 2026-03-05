@@ -26,3 +26,19 @@ A full Fantasy Premier League-style web application built with Flask and Firebas
 git clone https://github.com/SkyNinjaX/fantasy-hillrange.git
 cd fantasy-hillrange
 ```
+
+## 🔐 Login Details
+
+1. Admin:
+
+```bash
+username : admin@fhl.com
+password : admin123
+```
+2. User:
+
+```bash
+username : user@fhl.com
+password : user123
+```
+

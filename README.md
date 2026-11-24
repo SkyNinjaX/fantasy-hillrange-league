@@ -1,44 +1,65 @@
-# 🏆 Fantasy Hillrange League
+# Fantasy Hillrange League (FHL)
 
-A full Fantasy Premier League-style web application built with Flask and Firebase.
+Fantasy Hillrange League is a Fantasy Premier League-inspired web application that allows users to build their own fantasy football teams, compete with other participants, and track their performance through a live leaderboard.
 
-## ✨ Features
+The platform provides an interactive team management system, automated points calculation, and an administrative interface for managing match statistics.
 
-- ⚽ **FPL-Style Team Building** - £100m budget, 11 players
-- 📊 **Live Leaderboard** - Real-time rankings
-- 🔐 **Firebase Authentication** - Secure login/register
-- 🎯 **Admin Panel** - Input match stats (goals, assists)
-- 📈 **Auto Points Calculation** - Goals (4pts), Assists (3pts)
-- 📱 **Responsive Design** - Works on all devices
+## Features
 
-## 🛠 Tech Stack
+- **Team Management:** Build a fantasy team of 11 players within a £100 million budget.
+- **Live Leaderboard:** Track rankings and compare performance with other participants.
+- **User Authentication:** Secure registration and login powered by Firebase Authentication.
+- **Admin Dashboard:** Manage match statistics, including goals and assists.
+- **Automated Points System:** Player performances are automatically converted into fantasy points.
+  - Goals: 4 points
+  - Assists: 3 points
+- **Responsive Interface:** Accessible across desktop, tablet, and mobile devices.
 
-- **Backend**: Python (Flask)
-- **Database**: Firebase Firestore
-- **Auth**: Firebase Authentication
-- **Frontend**: HTML5, Tailwind CSS, JavaScript
+## Technology Stack
 
-## 🚀 Setup
+| Component | Technology |
+|---|---|
+| Backend | Python (Flask) |
+| Database | Firebase Firestore |
+| Authentication | Firebase Authentication |
+| Frontend | HTML5, Tailwind CSS, JavaScript |
 
-1. Clone the repo:
+## Getting Started
+
+### Installation
+
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/SkyNinjaX/fantasy-hillrange.git
+```
+
+2. Navigate to the project directory:
+
+```bash
 cd fantasy-hillrange
 ```
 
-## 🔐 Login Details
+3. Install the required dependencies and configure your Firebase credentials before running the application.
 
-1. Admin:
+## Demo Credentials
 
-```bash
-username : admin@fhl.com
-password : admin123
-```
-2. User:
+The following credentials are provided for testing purposes.
 
-```bash
-username : user@fhl.com
-password : user123
+**Administrator Account**
+
+```text
+Email: admin@fhl.com
+Password: admin123
 ```
 
+**Standard User Account**
+
+```text
+Email: user@fhl.com
+Password: user123
+```
+
+## Project Overview
+
+Fantasy Hillrange League was developed to bring a competitive fantasy football experience to the Hillrange community, combining team selection, player performance tracking, and league rankings in one platform.
